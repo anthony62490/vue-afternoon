@@ -1,17 +1,18 @@
 <template>
   <div class="home">
-    <Bots/>
+    <BotsList/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Bots from '@/components/Bots.vue'
+import BotsList from '@/components/BotsList.vue'
 
 export default {
-  name: 'home',
+  name: 'battle',
   components: {
-    Bots
+    BotsList
   }
 }
 </script>
+
