@@ -1,6 +1,7 @@
 <template>
   <div class="home">
-    <BotsList/>
+    <!-- Don't forget to bind props or the name will be treated as a string -->
+    <BotsList :bots='bots'/>
   </div>
 </template>
 
@@ -10,6 +11,9 @@ import BotsList from '@/components/BotsList.vue'
 
 export default {
   name: 'battle',
+  props:{
+    bots: Array
+  },
   components: {
     BotsList
   }

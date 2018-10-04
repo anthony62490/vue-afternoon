@@ -3,7 +3,7 @@
     <p>Name: <strong>{{name}}</strong></p>
     <p>Max HP: <strong>{{hp}}</strong></p>
     <p>Attack Power: <strong>{{atk}}</strong></p>
-    <button>Fight!</button>
+    <button @click='pick(index)'>Fight!</button>
     <button>Delete</button>
   </div>
 </template>
@@ -21,6 +21,14 @@
         required: true
       },
       atk: {
+        type: Number,
+        required: true
+      },
+      pick: {
+        type: Function,
+        required: true
+      },
+      index: {
         type: Number,
         required: true
       }

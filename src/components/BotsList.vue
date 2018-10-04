@@ -1,8 +1,12 @@
 <template>
-  <div class='list'>
-    <div class='card' :key='i' v-for="(e, i) in getBots">
-      <Bot :name='e.name' :hp='e.hitpoints' :atk='e.attack'/>
+  <div>
+    <div class='list'>
+      <div class='card' :key='i' v-for="(e, i) in bots">
+        <Bot :name='e.name' :hp='e.hitpoints' :atk='e.attack' :pick='pickBot' :index='i'/>
+      </div>
     </div>
+    {{bot1}}
+    {{bot2}}
   </div>
 </template>
 
@@ -12,24 +16,31 @@
     components:{
       Bot: Bot
     },
-    data() {
-      return {
-        begin: 'begin.',
-        bots:[
-          {name:'Nightsass', hitpoints:50, attack:4},
-          {name:'Crusher', hitpoints:20, attack:8},
-          {name:'B0nb0n', hitpoints:40, attack:3},
-          {name:'Breakdown', hitpoints:60, attack:2},
-          {name:'Dodger', hitpoints:5, attack:20}
-        ]
-      }
+    props:{
+      bots: Array,
+      bot1: Number || null,
+      bot2: Number || null
     },
-    // methods:{
-    //   addBot
-    // }
-    computed:{
-      getBots(){
-        return this.bots.slice();
+    methods:{
+      pickBot(i){
+        if(!this.bot1){
+          this.bot1 = i;
+        }
+        else if(!this.bot2){
+          this.bot2 = i;
+          this.pickWinner(this.bot1,this.bot2);
+        }
+        console.log('bots', this.bot1, this.bot2);
+      },
+      pickWinner(one, two){
+        if(Math.random() > 0.5){
+          alert(`${this.bots[one].name} wins!`);
+        }
+        else {
+          alert(`${this.bots[two].name} wins!`);
+        }
+        this.bot1 = null;
+        this.bot2 = null;
       }
     }
   }
